@@ -14,7 +14,8 @@ const PageHead: NextPage<Props> = props => {
       <link rel="icon" type="image/png" sizes="16x16" href={"/favicon-16x16.png"}/>
       <link rel="manifest" href={"/site.webmanifest"}/>
 
-      {(props.title && <title> KeySafe | {props.title}</title>) || <title>KeySafe</title>}
+      <title>KeySafe</title>
+      {(props.title && <title> KeySafe | {props.title}</title>)}
       {(props.desc && <meta name="description" content={props.desc}/>) ||
           <meta name="description" content="A cloud-based, open source, secure password manager."/>}
     </Head>
