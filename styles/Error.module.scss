@@ -1,0 +1,24 @@
+@use 'colours' as *;
+
+.container {
+padding: 0 2rem;
+  display: flex;
+  height: 100vh;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h1 {
+  margin: 0;
+  text-decoration: underline solid 2px $blue;
+}
+
+.p, .link {
+  font-size: 20px;
+}
+
+.link {
+  color: blue;
+}

@@ -2,15 +2,17 @@ import {NextPage} from "next";
 import PageHead from "../components/PageHead";
 import Link from "next/link";
 
+import styles from "../styles/Error.module.scss";
+
 const Page404: NextPage = () => {
   return (
-    <>
-      <PageHead title="404" desc="Page not found"></PageHead>
-      <h1>Error: 404</h1>
-      <p>Page not found</p>
-      <Link href="/">Return Home</Link>
-    </>
+    <div className={styles.container}>
+      <PageHead title="Page Not Found" desc="Page not found"></PageHead>
+      <h1 className={styles.h1}>Error 404: Page Not Found</h1>
+      <p className={styles.p}>Sorry, that page doesn't exist.</p>
+      <Link href="/"><a className={styles.link}>Return Home</a></Link>
+    </div>
   );
 }
 
-export default Page404;
+export default Page404

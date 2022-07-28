@@ -1,5 +1,5 @@
 import '../styles/globals.scss'
-import type { AppProps } from 'next/app'
+import type {AppProps} from 'next/app'
 
 import Authentication from "../components/Authentication";
 
