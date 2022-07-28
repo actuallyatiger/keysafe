@@ -5,12 +5,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.body.name && req.body.username && req.body.password) {
     res.status(201) // 201 = created
     res.send({
-      token: "fake-token"
+      token: "fake-token",
     })
   } else {
     res.status(400) // 400 = bad request
     res.send({
-      error: "Missing username or password"
+      error: "Missing username or password",
     })
   }
 }

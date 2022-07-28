@@ -13,7 +13,8 @@ const ErrorPage: NextPage<Props> = ({statusCode}) => {
     <PageHead title={`Error ${statusCode}`} desc={`Error ${statusCode}`}></PageHead>
     <div className={styles.container}>
       <h1 className={styles.h1}>Error {statusCode}</h1>
-      <p>{statusCode ? `An error ${statusCode} occurred on the server` : "An error occurred on the client"}. Please try again later.</p>
+      <p>{statusCode ? `An error ${statusCode} occurred on the server` : "An error occurred on the client"}. Please try
+        again later.</p>
       <Link href="/"><a className={styles.link}>Return Home</a></Link>
     </div>
   </>)

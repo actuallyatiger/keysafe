@@ -1,13 +1,13 @@
-@use 'colours' as *;
+@use "colours" as *;
 
 .container {
-padding: 0 2rem;
   display: flex;
-  height: 100vh;
-
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  justify-content: center;
+  height: 100vh;
+  padding: 0 2rem;
 }
 
 .h1 {

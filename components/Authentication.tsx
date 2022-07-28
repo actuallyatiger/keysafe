@@ -6,7 +6,7 @@ interface Props {
   protectedRoutes: string[]
 }
 
-const Authentication = ({ children, protectedRoutes}: Props) => {
+const Authentication = ({children, protectedRoutes}: Props) => {
   const router = useRouter()
   const [isAuthenticated, setAuthenticated] = useState(false)
 

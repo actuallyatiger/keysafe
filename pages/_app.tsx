@@ -3,7 +3,7 @@ import type {AppProps} from 'next/app'
 
 import Authentication from "../components/Authentication";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({Component, pageProps}: AppProps) {
   const protectedRoutes = ["/dashboard"]
 
   return (<>

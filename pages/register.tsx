@@ -64,11 +64,11 @@ const Register: NextPage = () => {
         <main>
           <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name: </label>
-            <input type="text" id="name" name="name" required/><br/>
+            <input type="text" id="name" name="name" required /><br />
             <label htmlFor="username">Username: </label>
-            <input type="text" id="username" name="username" required/><br/>
+            <input type="text" id="username" name="username" required /><br />
             <label htmlFor="password">Password: </label>
-            <input type="password" id="password" name="password" required/><br/>
+            <input type="password" id="password" name="password" required /><br />
             <button type="submit">Register</button>
           </form>
 
