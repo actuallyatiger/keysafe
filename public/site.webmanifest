@@ -13,8 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#0070f3",
-    "background_color": "#0070f3",
-    "start_url": "https://keysafe.info",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
     "display": "standalone"
 }
