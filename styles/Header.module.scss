@@ -1,0 +1,59 @@
+@use "colours" as *;
+
+.header {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  flex: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $light-grey;
+
+  > * {
+    padding-right: 15%;
+    padding-left: 15%;
+  }
+}
+
+.headerLinks > * {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.headerHome {
+  transition: text-shadow 0.25s ease;
+}
+
+.headerHome:hover,
+.headerHome:focus,
+.headerHome:active {
+  text-shadow: 0 0 1px $dark-grey;
+}
+
+.login {
+  margin-right: 2rem;
+  transition: text-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+.login:hover,
+.login:focus,
+.login:active {
+  text-shadow: 0 0 1px $dark-grey;
+}
+
+.register {
+  padding: 0.5rem;
+  transition: filter 0.25s ease;
+  color: white;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: $blue;
+}
+
+.register:hover,
+.register:focus,
+.register:active {
+  filter: drop-shadow(0 0 2px $dark-grey);
+}

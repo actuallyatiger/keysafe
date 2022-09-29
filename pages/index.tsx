@@ -3,18 +3,13 @@ import Link from 'next/link'
 
 import styles from '../styles/Index.module.scss'
 import PageHead from '../components/PageHead'
+import Header from '../components/Header'
 
 const Index: NextPage = () => {
   return (<div className={styles.container}>
     <PageHead></PageHead>
 
-    <header className={styles.header}>
-      <h1 className={styles.headerHome}><Link href="/">KeySafe</Link></h1>
-      <div className={styles.headerLinks}>
-        <Link href="/login"><a className={styles.login}>Log in</a></Link>
-        <Link href="/register"><a className={styles.register}>Register</a></Link>
-      </div>
-    </header>
+    <Header></Header>
 
     <main className={styles.main}>
       <h1 className={styles.title}>
