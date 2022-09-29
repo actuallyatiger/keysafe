@@ -42,3 +42,8 @@ test-timings.json
 # Cache
 *.tsbuildinfo
 .swc/
+
+.env
+
+# GCP API Keys
+api-access-key.json
