@@ -6,6 +6,7 @@ import Script from "next/script";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import ReactDOM from 'react-dom';
+import Header from "../components/Header"
 
 const Register: NextPage = () => {
 
@@ -60,6 +61,8 @@ const Register: NextPage = () => {
   return (<>
       <div className={styles.container}>
         <PageHead title="Register" desc="Register with KeySafe"></PageHead>
+
+        <Header></Header>
 
         <main>
           <form onSubmit={handleSubmit}>
