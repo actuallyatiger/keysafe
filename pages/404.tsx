@@ -10,7 +10,7 @@ const Page404: NextPage = () => {
       <PageHead title="Page Not Found" desc="Page not found"></PageHead>
       <h1 className={styles.h1}>Error 404: Page Not Found</h1>
       <p className={styles.p}>Sorry, that page doesn't exist.</p>
-      <Link href="/"><a className={styles.link}>Return Home</a></Link>
+      <Link href="/" className={styles.link}>Return Home</Link>
     </div>
   );
 }
