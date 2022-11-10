@@ -1,4 +1,4 @@
-import {NextPage} from "next";
+import { NextPage } from "next";
 
 import PageHead from "../../components/PageHead";
 
@@ -11,6 +11,6 @@ const Dashboard: NextPage = () => {
       </div>
     </>
   );
-}
+};
 
 export default Dashboard;
