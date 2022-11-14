@@ -2,11 +2,11 @@ import type { NextPage } from "next";
 
 import styles from "../styles/Register.module.scss";
 import PageHead from "../components/PageHead";
-import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Header from "../components/Header";
+import Link from "next/link";
 
 const Register: NextPage = () => {
   const router = useRouter();
@@ -60,29 +60,25 @@ const Register: NextPage = () => {
     <>
       <div className={styles.container}>
         <PageHead title="Register" desc="Register with KeySafe"></PageHead>
-
         <Header></Header>
 
-        <main>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name: </label>
-            <input type="text" id="name" name="name" required />
-            <br />
-            <label htmlFor="username">Username: </label>
-            <input type="text" id="username" name="username" required />
-            <br />
-            <label htmlFor="password">Password: </label>
-            <input type="password" id="password" name="password" required />
-            <br />
-            <button type="submit">Register</button>
-          </form>
-
+        <main className={styles.main}>
+          <div className={styles.registerBox}>
+            <h1>Register</h1>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <label htmlFor="name" hidden>Name</label>
+              <input type="text" id="name" name="name" placeholder="Name" required />
+              <label htmlFor="username" hidden>Username</label>
+              <input type="text" id="username" name="username" placeholder="Username" required />
+              <label htmlFor="password" hidden>Password</label>
+              <input type="password" id="password" name="password" placeholder="Password" required />
+              <button type="submit" className={styles.submit}>Register</button>
+            </form>
+            <p>Already got an account? <Link href="/login" className={styles.loginLink}>Sign in</Link></p>
+          </div>
           <div id="error" className={styles.error}></div>
         </main>
       </div>
-      <Script id="hideError" strategy="afterInteractive">
-        {`document.getElementById("error").style.display = "none";`}
-      </Script>
     </>
   );
 };

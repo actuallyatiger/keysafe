@@ -1,0 +1,79 @@
+@use "colours" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0 2rem;
+  min-height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.registerBox {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  max-width: 25rem;
+  border: 1px solid $light-grey;
+  border-radius: 0.5rem;
+  box-shadow: $light-grey 5px 5px 5px;
+  padding: 1rem 0;
+
+  > h1 {
+    margin-bottom: 0;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 90%;
+
+  > input {
+    height: 3rem;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin: 1rem;
+    transition: box-shadow 0.25s ease;
+    box-shadow: none;
+
+    ::placeholder {
+      font-size: 1.25rem;
+    }
+  }
+
+  > input:focus {
+    box-shadow: $blue 0 0 10px;
+  }
+}
+
+.submit {
+  background-color: #ffffff;
+  border: 2px solid $blue;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  transition: filter 0.25s ease;
+  cursor: pointer;
+}
+
+.loginLink {
+  font-weight: 600;
+  text-decoration: solid underline $blue;
+}

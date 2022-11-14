@@ -1,6 +1,5 @@
 import { NextPage } from "next";
 import * as ReactDOM from "react-dom";
-
 import styles from "../styles/Login.module.scss";
 import PageHead from "../components/PageHead";
 import { useRouter } from "next/router";
@@ -72,7 +71,7 @@ const Login: NextPage = () => {
               <button type="submit" className={styles.submit}>Login</button>
             </form>
 
-            <Link href={"/register"} className={styles.registerLink}>Create an Account Instead</Link>
+            <p>Don't have an account? <Link href={"/register"} className={styles.registerLink}>Sign up</Link></p>
           </div>
           <div id="error" className={styles.error}></div>
         </main>
