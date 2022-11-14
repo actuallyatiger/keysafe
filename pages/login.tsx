@@ -6,6 +6,7 @@ import PageHead from "../components/PageHead";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Link from "next/link";
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -58,33 +59,20 @@ const Login: NextPage = () => {
     <>
       <div className={styles.container}>
         <PageHead title="Login" desc="Login to KeySafe"></PageHead>
-
-        <Header></Header>
+        <Header />
 
         <main className={styles.main}>
           <div className={styles.loginBox}>
             <h1 className={styles.title}>Login</h1>
             <form onSubmit={handleSubmit} className={styles.form}>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Username"
-                required
-              />
-              <br />
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                required
-              />
-              <br />
-              <button type="submit" className={styles.submit}>
-                Login
-              </button>
+              <label htmlFor="username" hidden>Username</label>
+              <input type="text" id="username" name="username" placeholder="Username" required />
+              <label htmlFor="password" hidden>Password</label>
+              <input type="password" id="password" name="password" placeholder="Password" required />
+              <button type="submit" className={styles.submit}>Login</button>
             </form>
+
+            <Link href={"/register"} className={styles.registerLink}>Create an Account Instead</Link>
           </div>
           <div id="error" className={styles.error}></div>
         </main>

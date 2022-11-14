@@ -72,3 +72,8 @@
   transition: filter 0.25s ease;
   cursor: pointer;
 }
+
+.registerLink {
+  font-weight: 600;
+  text-decoration: solid underline $blue;
+}
