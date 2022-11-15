@@ -33,7 +33,7 @@ const Login: NextPage = () => {
 
     const jsonData = JSON.stringify(data);
 
-    const endpoint = "/api/login";
+    const endpoint = "/api/auth/login";
 
     const options = {
       method: "POST",

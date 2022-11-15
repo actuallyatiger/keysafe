@@ -35,7 +35,7 @@ const Register: NextPage = () => {
 
     const jsonData = JSON.stringify(data);
 
-    const endpoint = "/api/register";
+    const endpoint = "/api/auth/register";
 
     const options = {
       method: "POST",
