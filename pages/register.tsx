@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
-
-import styles from "../styles/Register.module.scss";
-import PageHead from "../components/PageHead";
+import styles from "styles/Register.module.scss";
+import PageHead from "components/PageHead";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import Header from "../components/Header";
+import Header from "components/Header";
 import Link from "next/link";
 
 const Register: NextPage = () => {

@@ -1,8 +1,7 @@
 import { NextPage } from "next";
-import PageHead from "../components/PageHead";
+import PageHead from "components/PageHead";
 import Link from "next/link";
-
-import styles from "../styles/Error.module.scss";
+import styles from "styles/Error.module.scss";
 
 const Page404: NextPage = () => {
   return (
