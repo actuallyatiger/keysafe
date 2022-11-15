@@ -27,7 +27,7 @@ const Login: NextPage = () => {
     event.preventDefault();
 
     const data = {
-      username: event.target.username.value,
+      username: event.target.email.value,
       password: event.target.password.value,
     };
 
@@ -64,11 +64,32 @@ const Login: NextPage = () => {
           <div className={styles.loginBox}>
             <h1 className={styles.title}>Login</h1>
             <form onSubmit={handleSubmit} className={styles.form}>
-              <label htmlFor="username" hidden>Username</label>
-              <input type="text" id="username" name="username" placeholder="Username" required />
-              <label htmlFor="password" hidden>Password</label>
-              <input type="password" id="password" name="password" placeholder="Password" required />
-              <button type="submit" className={styles.submit}>Login</button>
+              <label htmlFor="username" hidden>
+                Username
+              </label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <label htmlFor="password" hidden>
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <Link href="/forgot-password" className={styles.resetPword}>
+                Forgot password?
+              </Link>
+              <button type="submit" id="submit " className={styles.submit}>
+                Login
+              </button>
             </form>
 
             <p>Don't have an account? <Link href={"/register"} className={styles.registerLink}>Sign up</Link></p>

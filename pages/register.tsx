@@ -28,7 +28,7 @@ const Register: NextPage = () => {
 
     const data = {
       name: event.target.name.value,
-      username: event.target.username.value,
+      username: event.target.email.value,
       password: event.target.password.value,
     };
 
@@ -65,13 +65,39 @@ const Register: NextPage = () => {
           <div className={styles.registerBox}>
             <h1>Register</h1>
             <form onSubmit={handleSubmit} className={styles.form}>
-              <label htmlFor="name" hidden>Name</label>
-              <input type="text" id="name" name="name" placeholder="Name" required />
-              <label htmlFor="username" hidden>Username</label>
-              <input type="text" id="username" name="username" placeholder="Username" required />
-              <label htmlFor="password" hidden>Password</label>
-              <input type="password" id="password" name="password" placeholder="Password" required />
-              <button type="submit" className={styles.submit}>Register</button>
+              <label htmlFor="name" hidden>
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name"
+                required
+              />
+              <label htmlFor="username" hidden>
+                Username
+              </label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <label htmlFor="password" hidden>
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <button type="submit" className={styles.submit}>
+                Register
+              </button>
             </form>
             <p>Already got an account? <Link href="/login" className={styles.loginLink}>Sign in</Link></p>
           </div>
