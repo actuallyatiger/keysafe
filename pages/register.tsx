@@ -105,7 +105,12 @@ const Register: NextPage = () => {
                 Register
               </button>
             </form>
-            <p>Already got an account? <Link href="/login" className={styles.loginLink}>Sign in</Link></p>
+            <p>
+              Already got an account?{" "}
+              <Link href="/login" className={styles.loginLink}>
+                Sign in
+              </Link>
+            </p>
           </div>
           <div id="error" className={styles.error}></div>
         </main>
