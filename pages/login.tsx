@@ -44,13 +44,19 @@ const Login: NextPage = () => {
     };
 
     const req = await fetch(endpoint, options);
-    const res = await req.json();
 
     if (req.status === 200) {
+      const res = await req.json();
       localStorage.setItem("token", res.token);
       setShouldRedirect(true);
     } else {
-      ReactDOM.render(<>{res.error}</>, document.getElementById("error"));
+      ReactDOM.render(
+        <p>
+          {(req.status ? "Error " + req.status + ": " : "") +
+            "Try again later."}
+        </p>,
+        document.getElementById("error")
+      );
     }
   };
 
