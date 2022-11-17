@@ -28,7 +28,7 @@ const Register: NextPage = () => {
 
     const data = {
       name: event.target.name.value,
-      username: event.target.email.value,
+      email: event.target.email.value,
       password: event.target.password.value,
     };
 
@@ -46,7 +46,6 @@ const Register: NextPage = () => {
 
     const req = await fetch(endpoint, options);
 
-
     if (req.status === 201) {
       const res = await req.json();
       localStorage.setItem("token", res.token);
@@ -54,7 +53,8 @@ const Register: NextPage = () => {
     } else {
       ReactDOM.render(
         <p>
-          {(req.status ? "Error" + req.status + ": " : "") + "Try again later."}
+          {(req.status ? "Error " + req.status + ": " : "") +
+            "Try again later."}
         </p>,
         document.getElementById("error")
       );

@@ -27,7 +27,7 @@ const Login: NextPage = () => {
     event.preventDefault();
 
     const data = {
-      username: event.target.email.value,
+      email: event.target.email.value,
       password: event.target.password.value,
     };
 
