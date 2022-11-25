@@ -19,7 +19,7 @@ const Index: NextPage = () => {
           <div className={styles.card}>
             <h2>Encrypted</h2>
             <p>
-              512-bit encryption used every step of the way ensures your
+              256-bit encryption used every step of the way ensures your
               security.
             </p>
           </div>
