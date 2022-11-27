@@ -34,7 +34,7 @@ const Register: NextPage = () => {
 
     const jsonData = JSON.stringify(data);
 
-    const endpoint = "api.keysafe.info/auth/register";
+    const endpoint = "https://api.keysafe.info/auth/register";
 
     const options = {
       method: "POST",

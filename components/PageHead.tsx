@@ -33,8 +33,8 @@ const PageHead: NextPage<Props> = (props) => {
 
       <meta lang="en" />
 
-      <title>KeySafe</title>
-      {props.title && <title> KeySafe | {props.title}</title>}
+      <title>{props.title ? `KeySafe | ${props.title}` : `KeySafe`}</title>
+
       {(props.desc && <meta name="description" content={props.desc} />) || (
         <meta
           name="description"

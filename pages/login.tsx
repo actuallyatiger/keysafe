@@ -33,7 +33,7 @@ const Login: NextPage = () => {
 
     const jsonData = JSON.stringify(data);
 
-    const endpoint = "api.keysafe.info/auth/login";
+    const endpoint = "https://api.keysafe.info/auth/login";
 
     const options = {
       method: "POST",
