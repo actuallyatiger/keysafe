@@ -34,7 +34,7 @@ const Index: NextPage = () => {
           <div className={styles.card}>
             <h2>Unlimited</h2>
             <p>
-              Cloud architecture means there&apos;s no limit on your protection
+              Cloud architecture means there&apos;s no limit on your protection.
             </p>
           </div>
 
