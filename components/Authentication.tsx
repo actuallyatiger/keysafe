@@ -18,11 +18,11 @@ const Authentication = ({ children, protectedRoutes }: Props) => {
     if (isProtectedRoute) {
       const token = localStorage.getItem("token");
       // TODO check if token is valid in database
-      if (token === "fake-token") {
-        setAuthenticated(true);
-      } else {
+      if (token === null) {
         localStorage.removeItem("token");
         router.push("/login").then();
+      } else {
+        setAuthenticated(true);
       }
     }
   });
