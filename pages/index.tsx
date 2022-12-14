@@ -1,7 +1,7 @@
+import Header from "components/Header";
+import PageHead from "components/PageHead";
 import type { NextPage } from "next";
 import styles from "styles/Index.module.scss";
-import PageHead from "components/PageHead";
-import Header from "components/Header";
 
 const Index: NextPage = () => {
   return (

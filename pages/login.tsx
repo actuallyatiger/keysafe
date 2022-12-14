@@ -1,11 +1,11 @@
-import { NextPage } from "next";
-import * as ReactDOM from "react-dom";
-import styles from "styles/Login.module.scss";
+import Header from "components/Header";
 import PageHead from "components/PageHead";
+import { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Header from "components/Header";
-import Link from "next/link";
+import * as ReactDOM from "react-dom";
+import styles from "styles/Login.module.scss";
 
 const Login: NextPage = () => {
   const router = useRouter();

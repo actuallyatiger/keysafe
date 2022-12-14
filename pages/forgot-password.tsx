@@ -3,7 +3,7 @@ import PageHead from "components/PageHead";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "styles/Forgot-Password.module.scss";
 

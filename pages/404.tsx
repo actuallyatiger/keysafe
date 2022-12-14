@@ -1,5 +1,5 @@
-import { NextPage } from "next";
 import PageHead from "components/PageHead";
+import { NextPage } from "next";
 import Link from "next/link";
 import styles from "styles/Error.module.scss";
 
