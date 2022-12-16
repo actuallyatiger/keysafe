@@ -12,8 +12,12 @@ const Login: NextPage = () => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   useEffect(() => {
+    // Preemptively start API serverless container
+    fetch("https://api.keysafe.info/");
+    // Check if already logged in
+    // TODO - check if token is valid
     if (localStorage.getItem("token") !== null) {
-      router.push("/dashboard").then();
+      setShouldRedirect(true);
     }
   }, []);
 
