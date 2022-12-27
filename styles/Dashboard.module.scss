@@ -1,0 +1,271 @@
+@use "colours" as *;
+
+.container {
+  height: 100vh;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid $dark-grey;
+  // box-shadow: 0 0 5px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0;
+
+  > input {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 300px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.5s ease;
+  }
+
+  > input:focus {
+    border-bottom: 2px solid $blue;
+  }
+  > a {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.headerButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0;
+
+  > * {
+    padding-left: 2rem;
+    cursor: pointer;
+  }
+}
+
+.main {
+  height: calc(100vh - 77px);
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: $dark-grey;
+  padding: 0;
+  width: 30%;
+  max-width: 320px;
+  height: 100%;
+  margin: 0;
+}
+
+.loading,
+.error,
+.noData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  height: 100%;
+  text-align: center;
+}
+
+.sideList {
+  padding: 0;
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+}
+
+.sideList::-webkit-scrollbar {
+  width: 5px;
+  background-color: $light-grey;
+}
+
+.sideList::-webkit-scrollbar-thumb {
+  background-color: $dark-grey;
+}
+
+.listItem > a {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-areas:
+    "title image"
+    "subtitle image";
+  height: 4.5rem;
+  border-bottom: 1px solid $dark-grey;
+
+  > h3 {
+    grid-area: title;
+    margin: auto 15px 5px;
+  }
+
+  > p {
+    grid-area: subtitle;
+    margin: 5px 15px auto;
+  }
+
+  > img {
+    grid-area: image;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+  }
+}
+
+.new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $blue;
+  width: 100%;
+  height: 4rem;
+  color: white;
+  border-top: 1px solid $dark-grey;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  z-index: 100;
+}
+
+.new:hover {
+  background: $dark-blue;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.credContainer {
+  height: 100%;
+  max-height: 180px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.credential {
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  margin-right: 0;
+  display: grid;
+  grid-template-columns: 30% 20% 50%;
+  grid-template-areas:
+    "img name name"
+    "img ann url"
+    "img ann email"
+    "img ann pword";
+
+  > h2,
+  a,
+  span {
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+  }
+
+  .spanDiv {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
+    grid-area: ann;
+    height: 100%;
+  }
+
+  .urlSpan,
+  .emailSpan,
+  .pwordSpan {
+    display: inline-block;
+    text-align: right;
+    margin: auto 0;
+  }
+
+  > .credImg {
+    grid-area: img;
+    height: 100%;
+    width: 100%;
+    max-height: 128px;
+    max-width: 128px;
+    margin: auto;
+    border-right: 1px solid $dark-grey;
+  }
+
+  > .name {
+    grid-area: name;
+    margin: 0 0 0 1rem;
+  }
+
+  .link {
+    grid-area: url;
+    margin-left: 1rem;
+    color: $blue;
+  }
+
+  .email {
+    grid-area: email;
+    margin-left: 1rem;
+  }
+
+  .pword {
+    grid-area: pword;
+    margin-left: 1rem;
+  }
+}
+
+.buttons {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto auto 0;
+  gap: 2rem;
+
+  > * {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease;
+  }
+
+  .edit {
+    background: white;
+    color: $blue;
+    border: 3px solid $blue;
+    border-radius: 10px;
+  }
+
+  .edit:hover {
+    box-shadow: 0 0 5px 2px $blue;
+  }
+
+  .delete {
+    background: $red;
+    color: white;
+    border: 3px solid $red;
+    border-radius: 10px;
+  }
+
+  .delete:hover {
+    box-shadow: 0 0 5px 2px $red;
+  }
+}
