@@ -1,9 +1,29 @@
 import Header from "components/Header";
 import PageHead from "components/PageHead";
 import type { NextPage } from "next";
+import { useEffect, useRef } from "react";
 import styles from "styles/Index.module.scss";
 
 const Index: NextPage = () => {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (gridRef.current) {
+      for (const card of gridRef.current.children) {
+        console.log(card);
+        if (card instanceof HTMLDivElement) {
+          card.addEventListener("mousemove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event as MouseEvent).clientX - rect.left;
+            const y = (event as MouseEvent).clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+          });
+        }
+      }
+    }
+  }, []);
+
   return (
     <div className={styles.container}>
       <PageHead></PageHead>
@@ -15,7 +35,7 @@ const Index: NextPage = () => {
           <span className={styles.blue}>KeySafe</span> - Your Password Manager
         </h1>
 
-        <div className={styles.grid}>
+        <div className={styles.grid} ref={gridRef}>
           <div className={styles.card}>
             <h2>Encrypted</h2>
             <p>
