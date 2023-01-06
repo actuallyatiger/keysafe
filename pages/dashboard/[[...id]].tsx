@@ -1,6 +1,7 @@
 import account from "assets/account.svg";
 import logout from "assets/logout.svg";
 import search from "assets/search.svg";
+import apiFetch from "components/FetchHandler";
 import PageHead from "components/PageHead";
 import { NextPage } from "next";
 import Image from "next/image";
@@ -37,32 +38,13 @@ const Dashboard: NextPage = (...args: any) => {
     const getCredentials = async () => {
       setData(null);
       try {
-        // const res = await fetch("https://api.keysafe.info/getCredentials");
-        // const data = await res.json();
-        // Mock data
-        const data = [
-          {
-            id: "1",
-            name: "Google",
-            email: "test1@example.com",
-            url: "https://www.google.com",
-          },
-          {
-            id: "2",
-            name: "Facebook",
-            email: "test2@example.com",
-            url: "https://www.facebook.com",
-          },
-          {
-            id: "3",
-            name: "Twitter",
-            email: "test3@example.com",
-            url: "https://www.twitter.com",
-          },
-        ];
-        setData(data);
+        const res = await apiFetch("/creds/getCredentials");
+        setData(res["creds"]);
         setError(null);
       } catch (e: any) {
+        if (e.message === "Unauthorized") {
+          Router.push("/login");
+        }
         setError(e);
       }
       setLoading(false);
@@ -139,16 +121,13 @@ const Dashboard: NextPage = (...args: any) => {
       // TODO fetch credential
       // Mock data
       try {
-        const data = {
-          id: id as string,
-          name: "Google",
-          email: `test${id}@example.com`,
-          password: "123",
-          url: "https://www.google.com",
-        };
-        setCred(data);
+        const data = await apiFetch(`/creds/getCredential/${id}`);
+        setCred(data["cred"]);
         setCredError(null);
       } catch (e: any) {
+        if (e.message === "Unauthorized") {
+          Router.push("/login");
+        }
         setCredError(e);
       }
       setCredLoading(false);
@@ -214,7 +193,7 @@ const Dashboard: NextPage = (...args: any) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: localStorage.getItem("token") || "",
       },
     });
     localStorage.removeItem("token");
