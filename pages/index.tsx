@@ -10,7 +10,6 @@ const Index: NextPage = () => {
   useEffect(() => {
     if (gridRef.current) {
       for (const card of gridRef.current.children) {
-        console.log(card);
         if (card instanceof HTMLDivElement) {
           card.addEventListener("mousemove", (event) => {
             const rect = card.getBoundingClientRect();
