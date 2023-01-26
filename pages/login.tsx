@@ -1,11 +1,13 @@
 import Header from "components/Header";
 import PageHead from "components/PageHead";
 import { NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as ReactDOM from "react-dom";
 import styles from "styles/Login.module.scss";
+import loading_circle from "assets/loading_circle.svg";
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -27,8 +29,11 @@ const Login: NextPage = () => {
     }
   }, [shouldRedirect]);
 
+  const loadingRef = useRef<HTMLImageElement>(null);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    loadingRef.current!.style.display = "block";
 
     const data = {
       email: event.target.email.value,
@@ -62,6 +67,7 @@ const Login: NextPage = () => {
         document.getElementById("error")
       );
     }
+    loadingRef.current!.style.display = "none";
   };
 
   return (
@@ -97,9 +103,19 @@ const Login: NextPage = () => {
               <Link href="/forgot-password" className={styles.resetPword}>
                 Forgot password?
               </Link>
-              <button type="submit" id="submit " className={styles.submit}>
-                Login
-              </button>
+              <div className={styles.submitArea}>
+                <button type="submit" id="submit " className={styles.submit}>
+                  Login
+                </button>
+                <Image
+                  src={loading_circle}
+                  ref={loadingRef}
+                  className={styles.loading_circle}
+                  alt="Loading"
+                  width={30}
+                  height={30}
+                />
+              </div>
             </form>
 
             <p>

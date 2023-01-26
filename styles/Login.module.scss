@@ -62,6 +62,12 @@
   }
 }
 
+.submitArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .submit {
   background-color: #ffffff;
   border: 2px solid $blue;
@@ -73,9 +79,23 @@
   cursor: pointer;
 }
 
+.loading_circle {
+  display: none;
+  animation: rotate 2s linear infinite;
+}
+
 .resetPword,
 .registerLink {
   font-size: 1rem;
   font-weight: 600;
   text-decoration: solid underline $blue;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
