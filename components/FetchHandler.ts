@@ -1,11 +1,4 @@
-const apiFetch = async (url: string, method: string = "GET") => {
-  const res = await fetch(`https://api.keysafe.info${url}`, {
-    method: method,
-    headers: {
-      Authorization: localStorage.getItem("token") || "",
-    },
-  });
-
+const handleRes = async (res: Response) => {
   // If the response was successful, return it
   if (res.ok) {
     let data = await res.json();
@@ -25,4 +18,34 @@ const apiFetch = async (url: string, method: string = "GET") => {
   }
 };
 
-export default apiFetch;
+const apiFetch = async (url: string, method: string = "GET") => {
+  const res = await fetch(`https://api.keysafe.info${url}`, {
+    method: method,
+    headers: {
+      Authorization: localStorage.getItem("token") || "",
+    },
+  });
+  try {
+    return handleRes(res);
+  } catch (e) {
+    throw e;
+  }
+};
+
+const apiFetchBody = async (url: string, method: string = "GET", body = {}) => {
+  const res = await fetch(`https://api.keysafe.info${url}`, {
+    method: method,
+    headers: {
+      Authorization: localStorage.getItem("token") || "",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  try {
+    return handleRes(res);
+  } catch (e) {
+    throw e;
+  }
+};
+
+export { apiFetch, apiFetchBody };
