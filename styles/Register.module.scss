@@ -62,6 +62,12 @@
   }
 }
 
+.submitArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .submit {
   background-color: #ffffff;
   border: 2px solid $blue;
@@ -71,6 +77,11 @@
   margin: 1rem;
   transition: filter 0.25s ease;
   cursor: pointer;
+}
+
+.loading_circle {
+  display: none;
+  animation: rotate 2s linear infinite;
 }
 
 .loginLink {

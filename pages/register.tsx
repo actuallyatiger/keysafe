@@ -3,9 +3,11 @@ import PageHead from "components/PageHead";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "styles/Register.module.scss";
+import loading_circle from "assets/loading_circle.svg";
+import Image from "next/image";
 
 const Register: NextPage = () => {
   const router = useRouter();
@@ -27,8 +29,11 @@ const Register: NextPage = () => {
     }
   }, [shouldRedirect]);
 
+  const loadingRef = useRef<HTMLImageElement>(null);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    loadingRef.current!.style.display = "block";
 
     const data = {
       name: event.target.name.value,
@@ -63,6 +68,7 @@ const Register: NextPage = () => {
         document.getElementById("error")
       );
     }
+    loadingRef.current!.style.display = "none";
   };
 
   return (
@@ -105,9 +111,19 @@ const Register: NextPage = () => {
                 placeholder="Password"
                 required
               />
-              <button type="submit" className={styles.submit}>
-                Register
-              </button>
+              <div className={styles.submitArea}>
+                <button type="submit" className={styles.submit}>
+                  Register
+                </button>
+                <Image
+                  src={loading_circle}
+                  alt="Loading..."
+                  ref={loadingRef}
+                  className={styles.loadingCircle}
+                  width={30}
+                  height={30}
+                />
+              </div>
             </form>
             <p>
               Already got an account?{" "}
