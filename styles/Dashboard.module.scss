@@ -177,13 +177,34 @@
 
   > h2,
   a,
-  span {
+  span,
+  input {
     display: inline-flex;
     align-items: center;
-    text-align: left;
+    text-align: left end;
+    margin: auto 0;
   }
 
-  .spanDiv {
+  > input {
+    border: none;
+    font-size: 1rem;
+    border-bottom: 1px solid black;
+    width: 80%;
+    height: 80%;
+  }
+
+  > .name {
+    width: 60%;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  > input:focus-visible {
+    outline: none;
+    border-bottom: 2px solid $blue;
+  }
+
+  > .spanDiv {
     display: inline-flex;
     flex-direction: column;
     align-items: right;

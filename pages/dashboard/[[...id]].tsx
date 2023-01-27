@@ -155,7 +155,7 @@ const Dashboard: NextPage = (...args: any) => {
       );
     }
     return (
-      <div className={styles.credContainer}>
+      <form className={styles.credContainer}>
         <div className={styles.credential}>
           {cred.url && (
             <img
@@ -164,25 +164,41 @@ const Dashboard: NextPage = (...args: any) => {
               className={styles.credImg}
             />
           )}
-          <h2 className={styles.name}>{cred.name}</h2>
+          <input
+            type="text"
+            className={styles.name}
+            defaultValue={cred.name}
+            placeholder="Name"
+          ></input>
           <div className={styles.spanDiv}>
             <span className={styles.urlSpan}>Website:</span>
             <span className={styles.emailSpan}>Email:</span>
             <span className={styles.pwordSpan}>Password:</span>
           </div>
-          {cred.url && (
-            <Link href={cred.url} className={styles.link}>
-              {cred.url}
-            </Link>
-          )}
-          <span className={styles.email}>{cred.email}</span>
-          <span className={styles.pword}>{cred.password}</span>
+          <input
+            type="url"
+            defaultValue={cred.url}
+            className={styles.link}
+            placeholder="Website"
+          ></input>
+          <input
+            className={styles.email}
+            defaultValue={cred.email}
+            placeholder="Email"
+          ></input>
+          <input
+            className={styles.pword}
+            defaultValue={cred.password}
+            placeholder="Password"
+          ></input>
         </div>
         <div className={styles.buttons}>
-          <button className={styles.edit}>Edit details</button>
+          <button type="submit" className={styles.edit}>
+            Save Changes
+          </button>
           <button className={styles.delete}>Delete</button>
         </div>
-      </div>
+      </form>
     );
   };
 
