@@ -196,10 +196,20 @@ const Dashboard: NextPage = (...args: any) => {
           <button type="submit" className={styles.edit}>
             Save Changes
           </button>
-          <button className={styles.delete}>Delete</button>
+          <button className={styles.delete} onClick={() => deleteBtn()}>
+            Delete
+          </button>
         </div>
       </form>
     );
+  };
+
+  const deleteBtn = async () => {
+    if (id === undefined || id === null) {
+      return;
+    } else {
+      await apiFetch(`/creds/deleteCredential/${id}`, "DELETE");
+    }
   };
 
   const newBtn = async () => {
