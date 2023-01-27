@@ -1,7 +1,7 @@
 import account from "assets/account.svg";
 import logout from "assets/logout.svg";
 import search from "assets/search.svg";
-import apiFetch from "components/FetchHandler";
+import { apiFetch, apiFetchBody } from "components/FetchHandler";
 import PageHead from "components/PageHead";
 import { NextPage } from "next";
 import Image from "next/image";
@@ -114,9 +114,7 @@ const Dashboard: NextPage = (...args: any) => {
       setCred(null);
       return;
     }
-    if (id === "new") {
-      // TODO Create new credential
-    }
+
     async function getCredential() {
       // TODO fetch credential
       // Mock data
@@ -188,6 +186,12 @@ const Dashboard: NextPage = (...args: any) => {
     );
   };
 
+  const newBtn = async () => {
+    const data = await apiFetch("/creds/createCredential", "POST");
+    setShouldUpdate(true);
+    Router.push(`/dashboard/${data["id"]}`);
+  };
+
   const logoutBtn = async () => {
     await fetch("https://api.keysafe.info/auth/logout", {
       method: "POST",
@@ -223,9 +227,9 @@ const Dashboard: NextPage = (...args: any) => {
         <main className={styles.main}>
           <aside className={styles.sideBar}>
             {loadList(data)}
-            <Link className={styles.new} href="new">
+            <button className={styles.new} onClick={() => newBtn()}>
               + New
-            </Link>
+            </button>
           </aside>
           <section className={styles.content}>{renderBody()}</section>
         </main>
