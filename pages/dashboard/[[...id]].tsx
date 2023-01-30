@@ -116,8 +116,6 @@ const Dashboard: NextPage = (...args: any) => {
     }
 
     async function getCredential() {
-      // TODO fetch credential
-      // Mock data
       try {
         const data = await apiFetch(`/creds/getCredential/${id}`);
         setCred(data["cred"]);

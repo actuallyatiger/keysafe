@@ -16,8 +16,7 @@ const Register: NextPage = () => {
   useEffect(() => {
     // Preemptively start API serverless container
     fetch("https://api.keysafe.info/");
-    // Check if already logged in
-    // TODO - check if token is valid
+    // Login validation done by /dashboard route
     if (localStorage.getItem("token") !== null) {
       setShouldRedirect(true);
     }
