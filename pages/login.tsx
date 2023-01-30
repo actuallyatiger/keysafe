@@ -66,7 +66,11 @@ const Login: NextPage = () => {
         document.getElementById("error")
       );
     }
-    loadingRef.current!.style.display = "none";
+    try {
+      loadingRef.current!.style.display = "none";
+    } catch (e) {
+      // Do nothing, null due to page having redirected.
+    }
   };
 
   return (
