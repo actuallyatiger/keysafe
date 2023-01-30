@@ -125,7 +125,7 @@ const Register: NextPage = () => {
                   src={loading_circle}
                   alt="Loading..."
                   ref={loadingRef}
-                  className={styles.loadingCircle}
+                  className={styles.loading_circle}
                   width={30}
                   height={30}
                 />
