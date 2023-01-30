@@ -91,6 +91,7 @@ const Register: NextPage = () => {
                 type="text"
                 id="name"
                 name="name"
+                autoComplete="name"
                 placeholder="Name"
                 required
               />
@@ -101,6 +102,7 @@ const Register: NextPage = () => {
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="email"
                 placeholder="Email"
                 required
               />
@@ -111,6 +113,7 @@ const Register: NextPage = () => {
                 type="password"
                 id="password"
                 name="password"
+                autoComplete="new-password"
                 placeholder="Password"
                 required
               />

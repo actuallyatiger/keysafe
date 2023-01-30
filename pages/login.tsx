@@ -90,6 +90,7 @@ const Login: NextPage = () => {
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="email"
                 placeholder="Email"
                 required
               />
@@ -100,6 +101,7 @@ const Login: NextPage = () => {
                 type="password"
                 id="password"
                 name="password"
+                autoComplete="current-password"
                 placeholder="Password"
                 required
               />
