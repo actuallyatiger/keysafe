@@ -140,13 +140,18 @@ const Dashboard: NextPage = (...args: any) => {
 
   const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    let toSend: CredDetails = { ...cred };
+    Object.keys(toSend).forEach((key) => {
+      toSend[key as keyof CredDetails] =
+        toSend[key as keyof CredDetails].trim();
+    });
     async function setCredential() {
-      await apiFetchBody(`/creds/setCredential/${id}`, "PUT", cred);
+      await apiFetchBody(`/creds/setCredential/${id}`, "PUT", toSend);
     }
     setCredential().then(() => {
       // Inside then() to ensure the request is finished before updating.
       setShouldUpdate(true);
+      setCred(toSend);
     });
   };
 
