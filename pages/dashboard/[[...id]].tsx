@@ -7,7 +7,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "styles/Dashboard.module.scss";
 
 type Credentials = CredSummary[] | null;
@@ -24,7 +24,15 @@ type CredDetails = {
   name: string;
   email: string;
   password: string;
-  url?: string;
+  url: string;
+};
+
+const emptyState: CredDetails = {
+  id: "",
+  name: "",
+  email: "",
+  password: "",
+  url: "",
 };
 
 const Dashboard: NextPage = (...args: any) => {
@@ -101,17 +109,16 @@ const Dashboard: NextPage = (...args: any) => {
   // Fetching selected credential details
   const router = useRouter();
   const { id } = router.query;
-  const [cred, setCred] = useState<CredDetails | null>(null);
+  const [cred, setCred] = useState<CredDetails>(emptyState);
   const [credLoading, setCredLoading] = useState(false);
   const [credError, setCredError] = useState<Error | null>(null);
 
   useEffect(() => {
     setCredLoading(true);
-    setCred(null);
+    setCred(emptyState);
     if (id === undefined) {
       setCredLoading(false);
       setCredError(null);
-      setCred(null);
       return;
     }
 
@@ -131,6 +138,22 @@ const Dashboard: NextPage = (...args: any) => {
     getCredential();
   }, [id]);
 
+  const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    async function setCredential() {
+      await apiFetchBody(`/creds/setCredential/${id}`, "PUT", cred);
+    }
+    setCredential().then(() => {
+      // Inside then() to ensure the request is finished before updating.
+      setShouldUpdate(true);
+    });
+  };
+
+  const formChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
+  };
+
   const renderBody = () => {
     if (credLoading) {
       return <div className={styles.loading}>Loading...</div>;
@@ -143,7 +166,7 @@ const Dashboard: NextPage = (...args: any) => {
         </div>
       );
     }
-    if (cred === undefined || cred === null) {
+    if (id === undefined) {
       return (
         <div>
           No account selected.
@@ -153,7 +176,7 @@ const Dashboard: NextPage = (...args: any) => {
       );
     }
     return (
-      <form className={styles.credContainer}>
+      <form className={styles.credContainer} onSubmit={formSubmit}>
         <div className={styles.credential}>
           {cred.url && (
             <img
@@ -163,10 +186,12 @@ const Dashboard: NextPage = (...args: any) => {
             />
           )}
           <input
+            name="name"
             type="text"
             className={styles.name}
-            defaultValue={cred.name}
+            value={cred.name}
             placeholder="Name"
+            onChange={(e) => formChange(e)}
           ></input>
           <div className={styles.spanDiv}>
             <span className={styles.urlSpan}>Website:</span>
@@ -174,20 +199,26 @@ const Dashboard: NextPage = (...args: any) => {
             <span className={styles.pwordSpan}>Password:</span>
           </div>
           <input
+            name="url"
             type="url"
-            defaultValue={cred.url}
+            value={cred.url}
             className={styles.link}
             placeholder="Website"
+            onChange={(e) => formChange(e)}
           ></input>
           <input
+            name="email"
             className={styles.email}
-            defaultValue={cred.email}
+            value={cred.email}
             placeholder="Email"
+            onChange={(e) => formChange(e)}
           ></input>
           <input
+            name="password"
             className={styles.pword}
-            defaultValue={cred.password}
+            value={cred.password}
             placeholder="Password"
+            onChange={(e) => formChange(e)}
           ></input>
         </div>
         <div className={styles.buttons}>
