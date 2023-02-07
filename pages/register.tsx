@@ -4,7 +4,6 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
 import styles from "styles/Register.module.scss";
 import loading_circle from "assets/loading_circle.svg";
 import Image from "next/image";
@@ -28,10 +27,13 @@ const Register: NextPage = () => {
     }
   }, [shouldRedirect]);
 
+  const sumbitRef = useRef<HTMLButtonElement>(null);
   const loadingRef = useRef<HTMLImageElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    sumbitRef.current!.setAttribute("disabled", "true");
     loadingRef.current!.style.display = "block";
 
     const data = {
@@ -59,15 +61,13 @@ const Register: NextPage = () => {
       localStorage.setItem("token", res.token);
       setShouldRedirect(true);
     } else {
-      ReactDOM.render(
-        <p>
-          {(req.status ? "Error " + req.status + ": " : "") +
-            "Try again later."}
-        </p>,
-        document.getElementById("error")
-      );
+      errorRef.current!.textContent = req.status
+        ? `Error ${req.status}: ${(await req.json())["error"]}`
+        : "Try again later.";
     }
+
     try {
+      sumbitRef.current!.removeAttribute("disabled");
       loadingRef.current!.style.display = "none";
     } catch (e) {
       // Do nothing, null due to page having redirected.
@@ -118,7 +118,12 @@ const Register: NextPage = () => {
                 required
               />
               <div className={styles.submitArea}>
-                <button type="submit" className={styles.submit}>
+                <button
+                  type="submit"
+                  className={styles.submit}
+                  id="register"
+                  ref={sumbitRef}
+                >
                   Register
                 </button>
                 <Image
@@ -138,7 +143,7 @@ const Register: NextPage = () => {
               </Link>
             </p>
           </div>
-          <div id="error" className={styles.error}></div>
+          <div id="error" className={styles.error} ref={errorRef}></div>
         </main>
       </div>
     </>

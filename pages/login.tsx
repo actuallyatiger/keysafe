@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import * as ReactDOM from "react-dom";
 import styles from "styles/Login.module.scss";
 import loading_circle from "assets/loading_circle.svg";
 
@@ -28,11 +27,15 @@ const Login: NextPage = () => {
     }
   }, [shouldRedirect]);
 
+  const sumbitRef = useRef<HTMLButtonElement>(null);
   const loadingRef = useRef<HTMLImageElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    sumbitRef.current!.setAttribute("disabled", "true");
     loadingRef.current!.style.display = "block";
+    sumbitRef.current!.style.cursor = "wait";
 
     const data = {
       email: event.target.email.value,
@@ -58,16 +61,15 @@ const Login: NextPage = () => {
       localStorage.setItem("token", res.token);
       setShouldRedirect(true);
     } else {
-      ReactDOM.render(
-        <p>
-          {(req.status ? "Error " + req.status + ": " : "") +
-            "Try again later."}
-        </p>,
-        document.getElementById("error")
-      );
+      errorRef.current!.textContent = req.status
+        ? `Error ${req.status}: ${(await req.json())["error"]}`
+        : "Try again later.";
     }
+
     try {
+      sumbitRef.current!.removeAttribute("disabled");
       loadingRef.current!.style.display = "none";
+      sumbitRef.current!.style.cursor = "pointer";
     } catch (e) {
       // Do nothing, null due to page having redirected.
     }
@@ -109,7 +111,12 @@ const Login: NextPage = () => {
                 Forgot password?
               </Link>
               <div className={styles.submitArea}>
-                <button type="submit" id="submit " className={styles.submit}>
+                <button
+                  type="submit"
+                  id="submit"
+                  className={styles.submit}
+                  ref={sumbitRef}
+                >
                   Login
                 </button>
                 <Image
@@ -130,7 +137,7 @@ const Login: NextPage = () => {
               </Link>
             </p>
           </div>
-          <div id="error" className={styles.error}></div>
+          <div id="error" className={styles.error} ref={errorRef}></div>
         </main>
       </div>
     </>
