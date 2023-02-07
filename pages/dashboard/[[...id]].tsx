@@ -90,7 +90,7 @@ const Dashboard: NextPage = (...args: any) => {
         {data.map((item: CredSummary) => (
           <li key={item.id} className={styles.listItem}>
             <Link href={`/dashboard/${item.id}`}>
-              <h3>{item.name}</h3>
+              <h3>{item.name || "Unnamed"}</h3>
               {item.url && (
                 <img
                   src={`${item.url}/favicon.ico`}
@@ -98,7 +98,7 @@ const Dashboard: NextPage = (...args: any) => {
                   className={styles.credImg}
                 />
               )}
-              <p>{item.email}</p>
+              <p>{item.email || "No email"}</p>
             </Link>
           </li>
         ))}
