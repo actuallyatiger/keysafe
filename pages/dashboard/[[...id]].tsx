@@ -1,13 +1,16 @@
 import account from "assets/account.svg";
 import logout from "assets/logout.svg";
 import search from "assets/search.svg";
+import copy from "assets/copy.svg";
+import eye_open from "assets/eye-open.svg";
+import eye_closed from "assets/eye-closed.svg";
 import { apiFetch, apiFetchBody } from "components/FetchHandler";
 import PageHead from "components/PageHead";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "styles/Dashboard.module.scss";
 
 type Credentials = CredSummary[] | null;
@@ -159,6 +162,30 @@ const Dashboard: NextPage = (...args: any) => {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
   };
 
+  const openRef = useRef<HTMLImageElement>(null);
+  const closedRef = useRef<HTMLImageElement>(null);
+  const copyRef = useRef<HTMLImageElement>(null);
+
+  const pwordRef = useRef<HTMLInputElement>(null);
+
+  const eyeChange = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (e.currentTarget === openRef.current) {
+      openRef.current!.style.display = "none";
+      closedRef.current!.style.display = "inline";
+      pwordRef.current!.type = "password";
+    } else if (e.currentTarget === closedRef.current) {
+      closedRef.current!.style.display = "none";
+      openRef.current!.style.display = "inline";
+      pwordRef.current!.type = "text";
+    }
+  };
+
+  const copyPword = () => {
+    navigator.clipboard.writeText(
+      (document.getElementById("password") as HTMLInputElement).value
+    );
+  };
+
   const renderBody = () => {
     if (credLoading) {
       return <div className={styles.loading}>Loading...</div>;
@@ -181,7 +208,11 @@ const Dashboard: NextPage = (...args: any) => {
       );
     }
     return (
-      <form className={styles.credContainer} onSubmit={formSubmit}>
+      <form
+        className={styles.credContainer}
+        onSubmit={formSubmit}
+        autoComplete="off"
+      >
         <div className={styles.credential}>
           {cred.url && (
             <img
@@ -213,18 +244,50 @@ const Dashboard: NextPage = (...args: any) => {
           ></input>
           <input
             name="email"
+            type="text"
             className={styles.email}
             value={cred.email}
             placeholder="Email"
             onChange={(e) => formChange(e)}
           ></input>
-          <input
-            name="password"
-            className={styles.pword}
-            value={cred.password}
-            placeholder="Password"
-            onChange={(e) => formChange(e)}
-          ></input>
+          <span className={styles.pword}>
+            <input
+              name="password"
+              id="password"
+              type="password"
+              autoComplete="new-password"
+              className={styles.pwordInput}
+              value={cred.password}
+              placeholder="Password"
+              ref={pwordRef}
+              onChange={(e) => formChange(e)}
+            ></input>
+            <Image
+              src={eye_closed}
+              alt="Hide password"
+              height={25}
+              width={25}
+              ref={openRef}
+              style={{ display: "none" }}
+              onClick={(e) => eyeChange(e)}
+            ></Image>
+            <Image
+              src={eye_open}
+              alt="Reveal password"
+              height={25}
+              width={25}
+              ref={closedRef}
+              onClick={(e) => eyeChange(e)}
+            ></Image>
+            <Image
+              src={copy}
+              alt="Copy"
+              height={25}
+              width={25}
+              ref={copyRef}
+              onClick={() => copyPword()}
+            ></Image>
+          </span>
         </div>
         <div className={styles.buttons}>
           <button type="submit" className={styles.edit}>

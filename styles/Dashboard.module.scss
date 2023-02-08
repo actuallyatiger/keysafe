@@ -164,11 +164,11 @@
 .credential {
   height: 100%;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
   margin-right: 0;
   display: grid;
-  grid-template-columns: 30% 20% 50%;
+  grid-template-columns: 25% 15% 60%;
   grid-template-areas:
     "img name name"
     "img ann url"
@@ -179,13 +179,13 @@
   a,
   span,
   input {
-    display: inline-flex;
+    display: inline-block;
     align-items: center;
     text-align: left end;
     margin: auto 0;
   }
 
-  > input {
+  input {
     border: none;
     font-size: 1rem;
     border-bottom: 1px solid black;
@@ -250,6 +250,18 @@
   .pword {
     grid-area: pword;
     margin-left: 1rem;
+    // margin-right: auto;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: left;
+
+    > input {
+      width: calc(80% - 35px);
+    }
+
+    > img {
+      cursor: pointer;
+    }
   }
 }
 
