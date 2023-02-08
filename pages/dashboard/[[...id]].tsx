@@ -96,7 +96,9 @@ const Dashboard: NextPage = (...args: any) => {
               <h3>{item.name || "Unnamed"}</h3>
               {item.url && (
                 <img
-                  src={`${item.url}/favicon.ico`}
+                  src={`https://icon.horse/icon/${item.url
+                    .replace("https://", "")
+                    .replace("http://", "")}`}
                   alt={`${item.name} logo`}
                   className={styles.credImg}
                 />
@@ -216,7 +218,9 @@ const Dashboard: NextPage = (...args: any) => {
         <div className={styles.credential}>
           {cred.url && (
             <img
-              src={`${cred.url}/favicon.ico`}
+              src={`https://icon.horse/icon/${cred.url
+                .replace("https://", "")
+                .replace("http://", "")}`}
               alt={`${cred.name} logo`}
               className={styles.credImg}
             />
@@ -343,7 +347,7 @@ const Dashboard: NextPage = (...args: any) => {
               <Image src={account} alt="Account" width={40} height={40} />
             </Link>
             <a onClick={() => logoutBtn()}>
-              <Image src={logout} alt="Account" width={40} height={40} />
+              <Image src={logout} alt="Logout" width={40} height={40} />
             </a>
           </div>
         </header>
