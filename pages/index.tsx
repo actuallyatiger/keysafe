@@ -64,7 +64,7 @@ const Index: NextPage = () => {
         </div>
       </main>
 
-      <footer className={styles.footer}>&copy; Tiger Taylor 2022</footer>
+      <footer className={styles.footer}>&copy; Tiger Taylor 2023</footer>
     </div>
   );
 };
