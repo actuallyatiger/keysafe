@@ -341,11 +341,13 @@ const Dashboard: NextPage = (...args: any) => {
     Router.push("/");
   };
 
-  searchRef.current!.addEventListener("keyup", ({ key }) => {
-    if (key === "Enter") {
-      setShouldUpdate(true);
-    }
-  });
+  useEffect(() => {
+    searchRef.current!.addEventListener("keyup", ({ key }) => {
+      if (key === "Enter") {
+        setShouldUpdate(true);
+      }
+    });
+  }, []);
 
   return (
     <div className={styles.container}>
