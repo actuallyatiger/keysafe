@@ -45,11 +45,19 @@ const Dashboard: NextPage = (...args: any) => {
   const [shouldUpdate, setShouldUpdate] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
+  const searchRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     const getCredentials = async () => {
       setData(null);
+      const searchTerm = searchRef.current!.value;
+      let res;
       try {
-        const res = await apiFetch("/creds/getCredentials");
+        if (searchTerm.length > 0) {
+          res = await apiFetch(`/creds/getCredentials?search=${searchTerm}`);
+        } else {
+          res = await apiFetch("/creds/getCredentials");
+        }
         setData(res["creds"]);
         setError(null);
       } catch (e: any) {
@@ -310,11 +318,13 @@ const Dashboard: NextPage = (...args: any) => {
       return;
     } else {
       await apiFetch(`/creds/deleteCredential/${id}`, "DELETE");
+      router.push("/dashboard");
     }
   };
 
   const newBtn = async () => {
     const data = await apiFetch("/creds/createCredential", "POST");
+    searchRef.current!.value = "";
     setShouldUpdate(true);
     Router.push(`/dashboard/${data["id"]}`);
   };
@@ -331,13 +341,23 @@ const Dashboard: NextPage = (...args: any) => {
     Router.push("/");
   };
 
+  searchRef.current!.addEventListener("keyup", ({ key }) => {
+    if (key === "Enter") {
+      setShouldUpdate(true);
+    }
+  });
+
   return (
     <div className={styles.container}>
       <PageHead title="Dashboard" desc="Dashboard" />
       <div>
         <header className={styles.header}>
           <div className={styles.search}>
-            <input type="text" placeholder="Search by service name..." />
+            <input
+              type="text"
+              placeholder="Search by service name..."
+              ref={searchRef}
+            />
             <a onClick={() => setShouldUpdate(true)}>
               <Image src={search} alt="Search" width={24} height={24} />
             </a>
