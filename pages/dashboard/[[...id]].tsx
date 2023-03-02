@@ -10,7 +10,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "styles/Dashboard.module.scss";
 
 type Credentials = CredSummary[] | null;
