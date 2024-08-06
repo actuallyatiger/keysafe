@@ -330,7 +330,7 @@ const Dashboard: NextPage = (...args: any) => {
   };
 
   const logoutBtn = async () => {
-    await fetch("https://api.keysafe.info/auth/logout", {
+    await fetch("https://api.keysafe.tigertaylor.xyz/auth/logout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

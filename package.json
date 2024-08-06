@@ -3,7 +3,7 @@
   "private": true,
   "author": "actuallyatiger",
   "description": "A cloud-based, open source, secure password manager.",
-  "homepage": "https://keysafe.info",
+  "homepage": "https://keysafe.tigertaylor.xyz",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",

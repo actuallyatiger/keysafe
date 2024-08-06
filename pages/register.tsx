@@ -14,7 +14,7 @@ const Register: NextPage = () => {
 
   useEffect(() => {
     // Preemptively start API serverless container
-    fetch("https://api.keysafe.info/");
+    fetch("https://api.keysafe.tigertaylor.xyz/");
     // Login validation done by /dashboard route
     if (localStorage.getItem("token") !== null) {
       setShouldRedirect(true);
@@ -44,7 +44,7 @@ const Register: NextPage = () => {
 
     const jsonData = JSON.stringify(data);
 
-    const endpoint = "https://api.keysafe.info/auth/register";
+    const endpoint = "https://api.keysafe.tigertaylor.xyz/auth/register";
 
     const options = {
       method: "POST",

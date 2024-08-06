@@ -19,7 +19,7 @@ const handleRes = async (res: Response) => {
 };
 
 const apiFetch = async (url: string, method: string = "GET") => {
-  const res = await fetch(`https://api.keysafe.info${url}`, {
+  const res = await fetch(`https://api.keysafe.tigertaylor.xyz${url}`, {
     method: method,
     headers: {
       Authorization: localStorage.getItem("token") || "",
@@ -33,7 +33,7 @@ const apiFetch = async (url: string, method: string = "GET") => {
 };
 
 const apiFetchBody = async (url: string, method: string = "GET", body = {}) => {
-  const res = await fetch(`https://api.keysafe.info${url}`, {
+  const res = await fetch(`https://api.keysafe.tigertaylor.xyz${url}`, {
     method: method,
     headers: {
       Authorization: localStorage.getItem("token") || "",
